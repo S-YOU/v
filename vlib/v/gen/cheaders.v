@@ -101,7 +101,7 @@ typedef int (*qsort_callback_func)(const void*, const void*);
 
 #if defined(_WIN32) || defined(__CYGWIN__)
 	#define VV_EXPORTED_SYMBOL extern __declspec(dllexport)
-	#define VV_LOCAL_SYMBOL static
+	#define VV_LOCAL_SYMBOL static inline
 #else
 	// 4 < gcc < 5 is used by some older Ubuntu LTS and Centos versions,
 	// and does not support __has_attribute(visibility) ...
@@ -113,7 +113,7 @@ typedef int (*qsort_callback_func)(const void*, const void*);
 		#define VV_LOCAL_SYMBOL  __attribute__ ((visibility ("hidden")))
 	#else
 		#define VV_EXPORTED_SYMBOL extern
-		#define VV_LOCAL_SYMBOL static
+		#define VV_LOCAL_SYMBOL static inline
 	#endif
 #endif
 
